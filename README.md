@@ -1,32 +1,45 @@
 # Leave Management System
 
-A simple learning project using HTML, CSS, JavaScript, Node.js, Express, and MongoDB.
-
-## Requirements
-- Node.js and npm
-- MongoDB Community Server running locally
-
-## Run in VS Code
-1. Extract this ZIP file.
-2. Open the `leave-management-system` folder in VS Code.
-3. Open Terminal > New Terminal.
-4. Install dependencies:
-   ```bash
-   npm install
-   ```
-5. Ensure MongoDB is running at `mongodb://127.0.0.1:27017`.
-6. Start the application:
-   ```bash
-   npm start
-   ```
-7. Open http://localhost:5050 in your browser.
+A simple academic project using Node.js, Express, MongoDB, Mongoose, HTML, CSS and JavaScript.
 
 ## Features
-- Register a user
-- Login using registered email (demo only)
+- User registration with email validation
+- Login using registered email (demo only; no password authentication)
 - View casual and medical leave balances
-- Apply for leave and deduct the selected days
+- Apply for casual or medical leave
 - Refresh leave balance
 
-## Important
-This is a classroom/demo project, not production-ready. Login uses email only and does not provide secure authentication or manager approval. Do not use it for real employee data.
+## Folder structure
+```text
+leave-management-system/
+├── config/db.js
+├── models/User.js
+├── routes/leaveRoutes.js
+├── public/index.html
+├── public/app.js
+├── public/style.css
+├── .env.example
+├── .gitignore
+├── app.js
+└── package.json
+```
+
+## Run locally
+1. Copy `.env.example` to `.env`.
+2. Set `MONGO_URI` to your local MongoDB or Atlas connection string.
+3. Run `npm install`.
+4. Run `npm start`.
+5. Open http://localhost:5050.
+
+## API routes
+- POST /api/register
+- POST /api/login
+- GET /api/leave-balance/:id
+- POST /api/apply-leave/:id
+- GET /api/health
+
+## Notes
+- This is a learning/demo project. Login is email-only and is not secure for real-world use. Add password hashing and proper authentication before production use.
+- Applying for leave deducts the requested days from the selected leave balance.
+- Never commit `.env` or share your MongoDB password.
+- On Render, set `MONGO_URI`; Render supplies `PORT` automatically.

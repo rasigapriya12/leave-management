@@ -5,103 +5,61 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Leave Management System</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app.js" defer></script>
 </head>
 <body>
   <main class="container">
-    <header class="page-header">
-      <div class="logo">LM</div>
-      <h1>Leave Management System</h1>
-      <p class="subtitle">Manage your casual and medical leave in one place.</p>
-    </header>
+    <h1>Leave Management System</h1>
+    <p class="subtitle">Register, view your leave balance and apply for leave.</p>
 
-    <section id="login-section" class="card">
+    <section id="login-section" class="panel">
       <h2>Login</h2>
-      <p class="muted">Enter the email address you registered with.</p>
       <form id="login-form">
-        <label for="email">Email address</label>
-        <input type="email" id="email" placeholder="you@example.com" required>
-        <button type="submit">Login</button>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <button class="btn" type="submit">Login</button>
       </form>
-      <p class="switch-text">New user? <button id="show-registration" class="link-btn" type="button">Create an account</button></p>
-      <p id="login-message" class="message" role="status"></p>
+      <p>Don't have an account? <button id="show-registration" class="text-btn" type="button">Create user</button></p>
     </section>
 
-    <section id="registration-section" class="card" hidden>
-      <h2>Create Account</h2>
-      <p class="muted">Enter your details to get started.</p>
+    <section id="registration-section" class="panel" hidden>
+      <h2>Create User</h2>
       <form id="registration-form">
-        <label for="username">Full name</label>
-        <input type="text" id="username" placeholder="Your name" required>
-
-        <label for="reg-email">Email address</label>
-        <input type="email" id="reg-email" placeholder="you@example.com" required>
-
-        <label for="roll-number">Employee / Roll number</label>
-        <input type="text" id="roll-number" placeholder="EMP001" required>
-
-        <div class="two-columns">
-          <div>
-            <label for="casual-leave">Casual leave days</label>
-            <input type="number" id="casual-leave" min="0" step="1" value="10" required>
-          </div>
-          <div>
-            <label for="medical-leave">Medical leave days</label>
-            <input type="number" id="medical-leave" min="0" step="1" value="10" required>
-          </div>
-        </div>
-
-        <button type="submit">Register</button>
+        <label for="username">Username</label><input type="text" id="username" required>
+        <label for="reg-email">Email</label><input type="email" id="reg-email" required>
+        <label for="roll-number">Roll Number</label><input type="text" id="roll-number" required>
+        <label for="casual-leave">Initial Casual Leave</label><input type="number" id="casual-leave" min="0" value="10" required>
+        <label for="medical-leave">Initial Medical Leave</label><input type="number" id="medical-leave" min="0" value="10" required>
+        <button class="btn" type="submit">Register</button>
       </form>
-      <p id="registration-message" class="message" role="status"></p>
-      <p class="switch-text">Already registered? <button id="show-login" class="link-btn" type="button">Login</button></p>
+      <p>Already registered? <button id="show-login" class="text-btn" type="button">Login</button></p>
+      <p id="registration-response" class="message" aria-live="polite"></p>
     </section>
 
-    <section id="dashboard" class="card" hidden>
-      <div class="dashboard-heading">
-        <div>
-          <p class="eyebrow">YOUR DASHBOARD</p>
-          <h2>Hello, <span id="username-display"></span>!</h2>
-          <p class="muted">Employee / Roll number: <span id="roll-number-display"></span></p>
-        </div>
-        <div class="avatar" aria-hidden="true">👤</div>
-      </div>
-
-      <h3>Available Leave Balance</h3>
+    <section id="balance-section" class="panel" hidden>
+      <h2>Leave Balance</h2>
+      <p>Welcome, <strong id="username-display"></strong> (Roll Number: <strong id="roll-number-display"></strong>)</p>
       <div class="balances">
-        <div class="balance-card casual">
-          <span class="balance-label">Casual Leave</span>
-          <p><strong id="casual-leave-display">0</strong> <span>days left</span></p>
-        </div>
-        <div class="balance-card medical">
-          <span class="balance-label">Medical Leave</span>
-          <p><strong id="medical-leave-display">0</strong> <span>days left</span></p>
-        </div>
+        <p>Casual Leave: <strong id="casual-leave-display">0</strong> days</p>
+        <p>Medical Leave: <strong id="medical-leave-display">0</strong> days</p>
       </div>
-
-      <button id="refresh-balance" class="button-secondary" type="button">Refresh balance</button>
-
-      <hr>
-
-      <h3>Apply for Leave</h3>
-      <form id="leave-form">
-        <label for="leave-type">Leave type</label>
-        <select id="leave-type" required>
-          <option value="casual">Casual Leave</option>
-          <option value="medical">Medical Leave</option>
-        </select>
-
-        <label for="leave-days">Number of days</label>
-        <input type="number" id="leave-days" min="1" step="1" placeholder="e.g. 2" required>
-
-        <button type="submit">Submit Leave Application</button>
-      </form>
-
-      <p id="response-message" class="message" role="status"></p>
-      <button id="logout-button" class="button-logout" type="button">Logout</button>
+      <div class="button-row">
+        <button id="refresh-balance" class="btn secondary" type="button">Refresh Balance</button>
+        <button id="logout-button" class="btn danger" type="button">Logout</button>
+      </div>
     </section>
 
-    <footer>Leave Management System · Student project</footer>
+    <section id="apply-leave-section" class="panel" hidden>
+      <h2>Apply for Leave</h2>
+      <form id="leave-form">
+        <label for="leave-type">Leave Type</label>
+        <select id="leave-type"><option value="casual">Casual</option><option value="medical">Medical</option></select>
+        <label for="leave-days">Number of Days</label>
+        <input type="number" id="leave-days" min="1" step="1" required>
+        <button class="btn" type="submit">Apply Leave</button>
+      </form>
+    </section>
+    <p id="response-message" class="message" aria-live="polite"></p>
   </main>
+  <script src="app.js"></script>
 </body>
 </html>
