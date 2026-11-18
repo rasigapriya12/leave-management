@@ -2,6 +2,10 @@
 
 A simple academic project using Node.js, Express, MongoDB, Mongoose, HTML, CSS and JavaScript.
 
+## Live Demo
+
+[Open Leave Management System](https://leave-management-kjao.vercel.app/)
+
 ## Features
 - User registration with email validation
 - Login using registered email (demo only; no password authentication)
@@ -9,7 +13,7 @@ A simple academic project using Node.js, Express, MongoDB, Mongoose, HTML, CSS a
 - Apply for casual or medical leave
 - Refresh leave balance
 
-## Folder structure
+## Folder Structure
 ```text
 leave-management-system/
 ├── config/db.js
@@ -24,19 +28,28 @@ leave-management-system/
 └── package.json
 ```
 
-## Run locally
+## Run Locally
 1. Copy `.env.example` to `.env`.
 2. Set `MONGO_URI` to your local MongoDB or Atlas connection string.
 3. Run `npm install`.
 4. Run `npm start`.
 5. Open http://localhost:5050.
 
-## API routes
+## API Routes
 - POST /api/register
 - POST /api/login
 - GET /api/leave-balance/:id
 - POST /api/apply-leave/:id
 - GET /api/health
+
+## Technologies Used
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express.js
+- MongoDB
+- Mongoose
 
 ## Notes
 - This is a learning/demo project. Login is email-only and is not secure for real-world use. Add password hashing and proper authentication before production use.
